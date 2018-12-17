@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "720535591751",
+    "firebase_url": "https://alice-and-bob-burgers-73926.firebaseio.com",
+    "project_id": "alice-and-bob-burgers-73926",
+    "storage_bucket": "alice-and-bob-burgers-73926.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720535591751:android:584276dd10fcd0ad",
+        "android_client_info": {
+          "package_name": "com.ecorp.abhamburger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720535591751-3lkgs33g1p4r7g5l6h7rqvuhcu7a5hmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFh7tSLYVkbfomZZclKqdeVzbKvmCW3QE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
