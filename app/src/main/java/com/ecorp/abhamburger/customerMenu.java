@@ -35,23 +35,21 @@ public class customerMenu extends Fragment {
     }
 
     public void addDishs(){
-//        LayoutInflater.from(getActivity()).inflate(R.layout.dish, null);
+
+        addDish(R.drawable.hamburger, "","",0);
+        addDish(R.drawable.hotdog,"","",0);
+
+    }
+
+    public void addDish(int img, String name, String note, int price){
         View dish = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
         ImageView im = dish.findViewById(R.id.image);
-        im.setImageDrawable(getResources().getDrawable(R.drawable.hamburger));
+        im.setImageDrawable(getResources().getDrawable(img));
         im.getLayoutParams().width = 400;
         im.getLayoutParams().height = 400;
         im.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        im.setScaleType(ImageView.ScaleType.FIT_CENTER);
         mDishs.addView(dish);
-
-        View dish2 = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
-        ImageView im2 = dish2.findViewById(R.id.image);
-        im2.setImageDrawable(getResources().getDrawable(R.drawable.hotdog));
-        mDishs.addView(dish2);
-
-        View dish3 = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
-        mDishs.addView(dish3);
-
     }
 
 }

@@ -71,6 +71,9 @@ public class customerActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, customerMenu.newInstance());
         transaction.commit();
+
+        bottomNavigationView.setSelectedItemId(R.id.navigation_menu);
+
     }
 
 
