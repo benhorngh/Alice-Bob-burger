@@ -16,6 +16,8 @@ public class customerMenu extends Fragment {
         return cm;
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
