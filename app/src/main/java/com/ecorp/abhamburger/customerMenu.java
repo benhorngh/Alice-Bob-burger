@@ -3,14 +3,17 @@ package com.ecorp.abhamburger;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class customerMenu extends Fragment {
+    private static customerMenu cm = null;
     public static customerMenu newInstance() {
-        customerMenu fragment = new customerMenu();
-        return fragment;
+        if(cm == null)
+            cm = new customerMenu();
+        return cm;
     }
 
     @Override

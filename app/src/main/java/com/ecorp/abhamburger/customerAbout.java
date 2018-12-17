@@ -7,9 +7,11 @@ import android.os.Bundle;
         import android.view.ViewGroup;
 
 public class customerAbout extends Fragment {
+    public static customerAbout ca = null;
     public static customerAbout newInstance() {
-        customerAbout fragment = new customerAbout();
-        return fragment;
+        if(ca == null)
+            ca = new customerAbout();
+        return ca;
     }
 
     @Override

@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class customerProfile extends Fragment {
+    public static customerProfile cp = null;
     public static customerProfile newInstance() {
-        customerProfile fragment = new customerProfile();
-        return fragment;
+        if(cp == null)
+            cp = new customerProfile();
+        return cp;
     }
 
     @Override
