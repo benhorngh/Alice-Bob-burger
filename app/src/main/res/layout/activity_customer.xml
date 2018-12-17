@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".customerActivity">
 
-
-
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
@@ -17,6 +15,17 @@
         android:animateLayoutChanges="true">
 
     </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/ic_action_shopping_cart"
+        android:onClick="checkout"/>
 
 
     <android.support.design.widget.BottomNavigationView

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class customerMenu extends Fragment {
     private static customerMenu cm = null;
@@ -36,14 +37,23 @@ public class customerMenu extends Fragment {
 
     public void addDishs(){
 
-        addDish(R.drawable.hamburger, "","",0);
-        addDish(R.drawable.hotdog,"","",0);
+        addDish(R.drawable.hamburger, "Hambur","with chips",60);
+        addDish(R.drawable.hotdog,"hot dog","drink not included",50.5);
 
     }
 
-    public void addDish(int img, String name, String note, int price){
+    public void addDish(int img, String name, String note, double price){
         View dish = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
+        ((TextView)dish.findViewById(R.id.dishName)).setText(name);
+        ((TextView)dish.findViewById(R.id.dishNotes)).setText(note);
+        ((TextView)dish.findViewById(R.id.dishPrice)).setText("$ "+price);
         ImageView im = dish.findViewById(R.id.image);
+        im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: activity for full details about the dish
+            }
+        });
         im.setImageDrawable(getResources().getDrawable(img));
         im.getLayoutParams().width = 400;
         im.getLayoutParams().height = 400;
@@ -51,5 +61,6 @@ public class customerMenu extends Fragment {
         im.setScaleType(ImageView.ScaleType.FIT_CENTER);
         mDishs.addView(dish);
     }
+
 
 }

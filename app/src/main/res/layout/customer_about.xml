@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/truiton_image"
         android:layout_centerHorizontal="true"
-        android:text="Alice and Bob Burgers"
+        android:text="@string/about_headline"
         android:textSize="30sp" />
 
     <TextView
