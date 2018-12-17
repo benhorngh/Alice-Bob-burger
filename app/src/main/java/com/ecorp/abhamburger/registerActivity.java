@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class registerActivity extends AppCompatActivity {
@@ -28,6 +29,42 @@ public class registerActivity extends AppCompatActivity {
     public void finish(View view){
         //TODO: get all information, check if vaild, and update in firebase
 
+        String pass1 = ((EditText)findViewById(R.id.password)).getText().toString();
+        String pass2 = ((EditText)findViewById(R.id.password2)).getText().toString();
+        String email = ((EditText)findViewById(R.id.email)).getText().toString();
+        String fullName = ((EditText)findViewById(R.id.FullName)).getText().toString();
+
+        if(!checkValid(((EditText)findViewById(R.id.password)))) return;
+        if(!checkValid(((EditText)findViewById(R.id.password2)))) return;
+        if(!checkValid(((EditText)findViewById(R.id.email)))) return;
+        if(!checkValid(((EditText)findViewById(R.id.FullName)))) return;
+
+        if(!pass1.equals(pass2)){
+            ((EditText)findViewById(R.id.password2)).setError("Passwords are not the same");
+            findViewById(R.id.password2).requestFocus();
+            return;
+        }
+
+        if(!email.contains("@")){
+            ((EditText)findViewById(R.id.email)).setError("invalid");
+            findViewById(R.id.email).requestFocus();
+            return;
+        }
+
+
+        String phone = ((EditText)findViewById(R.id.phoneNum)).getText().toString();
+        String Bday = ((EditText)findViewById(R.id.Bday)).getText().toString();
+        String role = ((Spinner)findViewById(R.id.role)).getSelectedItem().toString();
+
         finish();
+    }
+    public boolean checkValid(EditText et){
+        String str = et.getText().toString();
+        if((str == null) || (str.isEmpty())){
+            et.setError("Required");
+            et.requestFocus();
+            return false;
+        }
+        return true;
     }
 }

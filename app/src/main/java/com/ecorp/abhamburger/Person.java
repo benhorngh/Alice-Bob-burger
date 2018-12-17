@@ -5,5 +5,5 @@ import java.util.Date;
 public class Person  {
      String firstName;
      String lastName;
-     Date birthDay;
+     Date birthday;
 }
