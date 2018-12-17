@@ -5,19 +5,22 @@
     android:layout_height="match_parent"
     tools:context="com.ecorp.abhamburger.customerAbout">
 
-    <ImageView
-        android:id="@+id/truiton_image"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/ic_action_fastfood"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/truiton_image"
         android:layout_centerHorizontal="true"
-        android:text="Fragment 3"
-        android:textSize="30sp"/>
+        android:text="Alice and Bob Burgers"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/rest_description"
+        android:layout_width="346dp"
+        android:layout_height="217dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="14dp"
+        android:text="@string/str_rest_description" />
 
 </RelativeLayout>
