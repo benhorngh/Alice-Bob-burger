@@ -13,8 +13,8 @@ public class Employee extends Person {
     String type = "seller";
     List<Integer> orderID;
 
-    public Employee(String fName, String lName, String email,String password, Date bday,  int[] orderID) {
-        super(fName, lName, email, password, bday);
+    public Employee(String fName, String lName, String email,String password) {
+        super(fName, lName, email, password);
         this.emoplyeeID = idGenerator ++;
         this.orderID = new ArrayList<Integer>();
     }

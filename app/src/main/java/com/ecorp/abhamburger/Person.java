@@ -1,20 +1,17 @@
 package com.ecorp.abhamburger;
 
-import java.util.Date;
-
 public class Person  {
      String firstName;
      String lastName;
      String email;
      String password;
-     Date birthday;
 
-     public Person(String firstName, String lastName, String email, String password, Date birthday) {
+
+     public Person(String firstName, String lastName, String email, String password) {
           this.firstName = firstName;
           this.lastName = lastName;
           this.email = email;
           this.password = password;
-          this.birthday = birthday;
      }
 
      public String getFirstName() {
@@ -39,14 +36,6 @@ public class Person  {
 
      public void setPassword(String password) {
           this.password = password;
-     }
-
-     public Date getBirthday() {
-          return birthday;
-     }
-
-     public void setBirthday(Date birthday) {
-          this.birthday = birthday;
      }
 
 

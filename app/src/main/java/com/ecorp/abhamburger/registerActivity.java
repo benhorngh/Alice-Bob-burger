@@ -50,10 +50,12 @@ public class registerActivity extends AppCompatActivity {
                 if(position == 1 || position == 2){ //Employee or manager
                     ((EditText)findViewById(R.id.phoneNum)).setEnabled(false);
                     ((EditText)findViewById(R.id.address)).setEnabled(false);
+                    ((EditText)findViewById(R.id.Bday)).setEnabled(false);
                 }
                 else {
                     ((EditText)findViewById(R.id.phoneNum)).setEnabled(true);
                     ((EditText)findViewById(R.id.address)).setEnabled(true);
+                    ((EditText)findViewById(R.id.Bday)).setEnabled(true);
                 }
             }
             @Override
@@ -73,18 +75,18 @@ public class registerActivity extends AppCompatActivity {
 
     /**
      * register new customer
-     * @param customer
+     * @param person the new user
      */
-    public void RegisterCustomer(final Customer customer){
+    public void RegisterUser(final Person person, final String type){
 
-        db.child("customer").child(customer.getEmail().replace(".", "|")).addListenerForSingleValueEvent(
+        db.child(type).child(person.getEmail().replace(".", "|")).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
                             Toast.makeText(registerActivity.this, "User already exists", Toast.LENGTH_LONG).show();
                         } else {
-                            db.child("customer").child(customer.getEmail().replace(".", "|")).setValue(customer);
+                            db.child(type).child(person.getEmail().replace(".", "|")).setValue(person);
                             Toast.makeText(registerActivity.this, "Registration done.", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -96,6 +98,7 @@ public class registerActivity extends AppCompatActivity {
                 }
         );
     }
+
 
 
 
@@ -145,12 +148,19 @@ public class registerActivity extends AppCompatActivity {
         }catch(Exception e){
             date = new Date();
         }
-        Customer newCustomer = null;
+        Person newPerson = null;
         if(role.equals("Customer")) {
-            //(String fName, String lName, String email,String password,Date birthday, String phone, String address)
-            newCustomer = new Customer(fName, lName, email, pass1, date, phone, address);
-            RegisterCustomer(newCustomer);
-        }  else Log.e("try to reg", "not a Customer " + role);
+            newPerson = new Customer(fName, lName, email, pass1, date, phone, address);
+            RegisterUser(newPerson, "Customer");
+        }
+        if(role.equals("Worker")) {
+            newPerson = new Employee(fName, lName, email, pass1);
+            RegisterUser(newPerson, "Employee");
+        }
+        if(role.equals("Manager")) {
+            newPerson = new Manager(fName, lName, email, pass1);
+            RegisterUser(newPerson, "Manager");
+        }
         finish();
     }
     public boolean checkValid(EditText et){
