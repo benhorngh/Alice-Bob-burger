@@ -31,6 +31,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +76,81 @@ public class LoginActivity extends AppCompatActivity {
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
+
+
+
+
+
+
+//    public void onLoginClick(View v){
+//
+//        final String emailInputString = mEmailView.getText().toString();
+//        final String passwordInputString = mPasswordView.getText().toString();
+//
+//        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+//
+//        db.child("users")
+//                .child(emailInputString.replace(".", "|"))
+//                .addListenerForSingleValueEvent(
+//                        new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                                boolean loginIsOk = false;
+//                                User user = null;
+//
+//                                if(dataSnapshot.exists()) {
+//                                    user = dataSnapshot.getValue(User.class);
+//                                    if (passwordInputString.equals(user.getPassword())) {
+//                                        loginIsOk = true;
+//                                    }
+//                                }
+//
+//                                if(loginIsOk) {
+//                                    AuthenticatedUserHolder.instance.setAppUser(user);
+//
+//                                    db.child("rides")
+//                                            .child(user.getEmail().replace(".", "|"))
+//                                            .addListenerForSingleValueEvent(
+//                                                    new ValueEventListener() {
+//                                                        @Override
+//                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                                            for(DataSnapshot dsp : dataSnapshot.getChildren()) {
+//                                                                AuthenticatedUserHolder.instance.getAppUser().addNewRide(dsp.getValue(Ride.class));
+//                                                            }
+//                                                            Toast.makeText(LoginActivity.this, "Welcome Back!", Toast.LENGTH_LONG).show();
+//                                                            startActivity(new Intent("com.example.avi.firebaseexample.MainMenuActivity"));
+//                                                        }
+//
+//                                                        @Override
+//                                                        public void onCancelled(@NonNull DatabaseError databaseError) { }
+//                                                    });
+//
+//                                } else {
+//                                    Toast.makeText(LoginActivity.this, "Either email or password is incorrect.", Toast.LENGTH_LONG).show();
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError databaseError) {}
+//                        }
+//                );
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

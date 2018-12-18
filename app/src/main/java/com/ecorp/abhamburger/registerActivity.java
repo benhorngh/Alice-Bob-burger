@@ -4,14 +4,20 @@ import android.app.DatePickerDialog;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -36,12 +42,60 @@ public class registerActivity extends AppCompatActivity {
 //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
 
+
+        //role spinner listener
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if(position == 1 || position == 2){ //Employee or manager
+                    ((EditText)findViewById(R.id.phoneNum)).setEnabled(false);
+                    ((EditText)findViewById(R.id.address)).setEnabled(false);
+                }
+                else {
+                    ((EditText)findViewById(R.id.phoneNum)).setEnabled(true);
+                    ((EditText)findViewById(R.id.address)).setEnabled(true);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+
+
         bday= (EditText) findViewById(R.id.Bday);
         setDateAction();
+
 
     }
 
 
+    final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+
+    /**
+     * register new customer
+     * @param customer
+     */
+    public void RegisterCustomer(final Customer customer){
+
+        db.child("customer").child(customer.getEmail().replace(".", "|")).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            Toast.makeText(registerActivity.this, "User already exists", Toast.LENGTH_LONG).show();
+                        } else {
+                            db.child("customer").child(customer.getEmail().replace(".", "|")).setValue(customer);
+                            Toast.makeText(registerActivity.this, "Registration done.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("try to reg", "error! "+ databaseError.toString());
+                    }
+                }
+        );
+    }
 
 
 
@@ -92,9 +146,11 @@ public class registerActivity extends AppCompatActivity {
             date = new Date();
         }
         Customer newCustomer = null;
-        if(role.equals("Customer"))
-             newCustomer = new Customer(fName,lName, date, email, phone, address);
-
+        if(role.equals("Customer")) {
+            //(String fName, String lName, String email,String password,Date birthday, String phone, String address)
+            newCustomer = new Customer(fName, lName, email, pass1, date, phone, address);
+            RegisterCustomer(newCustomer);
+        }  else Log.e("try to reg", "not a Customer " + role);
         finish();
     }
     public boolean checkValid(EditText et){
