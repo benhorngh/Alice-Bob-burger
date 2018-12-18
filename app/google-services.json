@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "720535591751-8sgi9s8fa1paa26956ka0cd1qu5aufg6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ecorp.abhamburger",
+            "certificate_hash": "42544f6418057ef2732fc05ca6d0550b2c85c6f5"
+          }
+        },
+        {
           "client_id": "720535591751-3lkgs33g1p4r7g5l6h7rqvuhcu7a5hmi.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720535591751-3lkgs33g1p4r7g5l6h7rqvuhcu7a5hmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
