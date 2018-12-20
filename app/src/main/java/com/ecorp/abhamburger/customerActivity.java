@@ -61,10 +61,8 @@ public class customerActivity extends AppCompatActivity {
         Fragment menu = customerMenu.newInstance();
         LinearLayout dishes = ((customerMenu) menu).mDishs;
         for(int i=0; i < dishes.getChildCount(); i++){
-
         }
         ((customerMenu) menu).mDishs.getChildAt(1);
-
     }
 
 
