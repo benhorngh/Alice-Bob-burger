@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ecorp.abhamburger">
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,13 +20,16 @@
         </activity>
         <activity android:name=".registerActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ManagerActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".customerActivity"
-            android:label="@string/title_activity_customer"></activity>
+            android:label="@string/title_activity_customer" />
+        <activity
+            android:name=".EmployeeActicity"
+            android:label="@string/title_activity_employee_acticity"></activity>
     </application>
 
 </manifest>

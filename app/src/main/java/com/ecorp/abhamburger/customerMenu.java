@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class customerMenu extends Fragment {
     private static customerMenu cm = null;
     public static customerMenu newInstance() {
@@ -18,6 +21,7 @@ public class customerMenu extends Fragment {
         return cm;
     }
     LinearLayout mDishs;
+    List<Integer> dishToView;
 
 
 
@@ -31,23 +35,30 @@ public class customerMenu extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.customer_menu, container, false);
         mDishs = (LinearLayout) view.findViewById(R.id.dishsLinear);
+        dishToView = new ArrayList<Integer>();
         addDishs();
         return view;
     }
 
-    public void addDishs(){
 
-        addDish(R.drawable.hamburger, "Hambur","with chips",60);
-        addDish(R.drawable.hotdog,"hot dog","drink not included",50.5);
+    public void addDishs(){
+//        (String name, String description, List<Ingredient> ingredients, double price)
+        Dish d1 = new Dish("Hamburger", "200gr with chips",null ,50);
+        Dish d2 = new Dish("Hot-dog", "with ketchup",null ,15);
+
+        addDish(R.drawable.hamburger, d1);
+        dishToView.add(d1.id);
+
+        addDish(R.drawable.hotdog, d2);
 
     }
 
-    public void addDish(int img, String name, String note, double price){
-        View dish = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
-        ((TextView)dish.findViewById(R.id.dishName)).setText(name);
-        ((TextView)dish.findViewById(R.id.dishNotes)).setText(note);
-        ((TextView)dish.findViewById(R.id.dishPrice)).setText("$ "+price);
-        ImageView im = dish.findViewById(R.id.image);
+    public void addDish(int img, Dish dish){
+        View dishView = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
+        ((TextView)dishView.findViewById(R.id.dishName)).setText(dish.getName());
+        ((TextView)dishView.findViewById(R.id.dishNotes)).setText(dish.getDescription());
+        ((TextView)dishView.findViewById(R.id.dishPrice)).setText("$ "+dish.getPrice());
+        ImageView im = dishView.findViewById(R.id.image);
         im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,8 +70,9 @@ public class customerMenu extends Fragment {
         im.getLayoutParams().height = 400;
         im.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         im.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        mDishs.addView(dish);
+        mDishs.addView(dishView);
     }
+
 
 
 }

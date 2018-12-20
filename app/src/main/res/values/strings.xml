@@ -30,7 +30,11 @@
     <string name="str_rest_description">The restaurant is located in the west of Tel Aviv at Fun st.1.\n
         opening hours:\n
 12:00-23:00 all the week. </string>
-
+    <string name="title_activity_employee_acticity">EmployeeActicity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_orders">Active orders</string>
 
 
 </resources>

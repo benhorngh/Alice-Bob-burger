@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -27,7 +26,7 @@ import java.util.Locale;
 
 public class registerActivity extends AppCompatActivity {
 
-    final String[] roles = { "Customer","Worker", "Manager" };
+    final String[] roles = { "Customer","Employee", "Manager" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +34,8 @@ public class registerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         Spinner dropdown = findViewById(R.id.role);
-//create a list of items for the spinner.
-//create an adapter to describe how the items are displayed, adapters are used in several places in android.
-//There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, roles);
-//set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
-
 
         //role spinner listener
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -108,7 +102,6 @@ public class registerActivity extends AppCompatActivity {
      * @param view
      */
     public void finish(View view){
-        //TODO: get all information, check if vaild, and update in firebase
 
         String pass1 = ((EditText)findViewById(R.id.password)).getText().toString();
         String pass2 = ((EditText)findViewById(R.id.password2)).getText().toString();
@@ -153,7 +146,7 @@ public class registerActivity extends AppCompatActivity {
             newPerson = new Customer(fName, lName, email, pass1, date, phone, address);
             RegisterUser(newPerson, "Customer");
         }
-        if(role.equals("Worker")) {
+        if(role.equals("Employee")) {
             newPerson = new Employee(fName, lName, email, pass1);
             RegisterUser(newPerson, "Employee");
         }
@@ -186,7 +179,6 @@ public class registerActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -199,7 +191,6 @@ public class registerActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 new DatePickerDialog(registerActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
