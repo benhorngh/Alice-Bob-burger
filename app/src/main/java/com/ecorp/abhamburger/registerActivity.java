@@ -87,7 +87,6 @@ public class registerActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.e("try to reg", "error! "+ databaseError.toString());
                     }
                 }
         );
