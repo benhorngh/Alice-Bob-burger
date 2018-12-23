@@ -27,6 +27,6 @@
         android:layout_width= "wrap_content"
         android:layout_height="wrap_content"
          android:src="@drawable/restpic"
-         />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

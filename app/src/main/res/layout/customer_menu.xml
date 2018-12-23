@@ -8,16 +8,8 @@ android:layout_height="match_parent"
     tools:context="com.ecorp.abhamburger.customerActivity"
     android:orientation="vertical">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/ic_action_shopping_cart"
-        android:onClick="checkout"/>
+
+
 
 
     <ScrollView
