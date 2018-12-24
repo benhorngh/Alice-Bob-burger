@@ -61,8 +61,8 @@ public class customerMenu extends Fragment {
         if(dishList.size()>1) {
             addDish(R.drawable.hamburger, dishList.get(0));
             addDish(R.drawable.hotdog, dishList.get(1));
-            addDish(R.drawable.fries, dishList.get(2));
-            addDish(R.drawable.schnitzel, dishList.get(3));
+            addDish(R.drawable.schnitzel, dishList.get(2));
+            addDish(R.drawable.fries, dishList.get(3));
             addDish(R.drawable.roastbeef, dishList.get(4));
         }
 
