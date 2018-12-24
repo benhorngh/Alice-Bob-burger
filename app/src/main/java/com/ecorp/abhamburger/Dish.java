@@ -3,16 +3,17 @@ package com.ecorp.abhamburger;
 import java.util.List;
 
 public class Dish {
-    static int idGenerator = 1111;
-
     int id;
     String name;
     String description;
     List<Ingredient> ingredients ;
     double price;
 
-    public Dish(String name, String description, List<Ingredient> ingredients, double price) {
-        id = idGenerator++;
+
+    public Dish(){}
+    
+    public Dish(int id, String name, String description, List<Ingredient> ingredients, double price) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.ingredients = ingredients;

@@ -10,4 +10,5 @@ public class Ingredient {
         this.name = name;
         id = ++idGenerator;
     }
+    public Ingredient(){}
 }
