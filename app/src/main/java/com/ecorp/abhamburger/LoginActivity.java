@@ -222,6 +222,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
             startActivity(intent);
         }
+        finish();
     }
 
     public void tryToLogIn(final String emailInputString, final String passwordInputString){
