@@ -3,6 +3,7 @@ package com.ecorp.abhamburger;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 public class ManagerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,8 +30,8 @@ public class ManagerActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                changePage(mainPage);
+
             }
         });
 
@@ -40,6 +43,9 @@ public class ManagerActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        bulidPage();
+        changePage(mainPage);
     }
 
     @Override
@@ -81,7 +87,7 @@ public class ManagerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            changePage(menuPage);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -97,5 +103,36 @@ public class ManagerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+
+
+
+    View mainPage =null;
+    View menuPage =null;
+
+    protected void changePage(View page){
+        FrameLayout frame = (FrameLayout) findViewById(R.id.content_manager);
+        frame.removeAllViews();
+        frame.addView(page);
+    }
+
+
+
+    /**
+     * build the Summary frame and homepage frame. only on create
+     */
+    protected void bulidPage(){
+        if(mainPage == null) {
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            mainPage = inflater.inflate(R.layout.content_main,
+                    (ViewGroup) findViewById(R.id.manager_main));
+        }
+        if(menuPage == null) {
+            LayoutInflater inflater = (LayoutInflater)      this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            menuPage = inflater.inflate(R.layout.manager_menu,
+                    (ViewGroup) findViewById(R.id.manager_menu));
+        }
     }
 }

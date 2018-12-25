@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         Spinner dropdown = findViewById(R.id.role);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, roles);
         dropdown.setAdapter(adapter);
+
     }
 
 
