@@ -133,6 +133,8 @@ public class ManagerActivity extends AppCompatActivity
             LayoutInflater inflater = (LayoutInflater)      this.getSystemService(LAYOUT_INFLATER_SERVICE);
             menuPage = inflater.inflate(R.layout.manager_menu,
                     (ViewGroup) findViewById(R.id.manager_menu));
+
+            managerMenu.setAllDishs(menuPage, this);
         }
     }
 }
