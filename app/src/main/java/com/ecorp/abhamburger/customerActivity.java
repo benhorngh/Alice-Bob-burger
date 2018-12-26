@@ -1,17 +1,23 @@
 package com.ecorp.abhamburger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class customerActivity extends AppCompatActivity {
@@ -62,13 +68,23 @@ public class customerActivity extends AppCompatActivity {
 
         Fragment menu = customerMenu.newInstance();
         LinearLayout dishes = ((customerMenu) menu).mDishs;
+        ArrayList<Integer> dishIdList = new ArrayList<Integer>();
         for(int i=0; i < dishes.getChildCount(); i++){
+            CheckBox cb =  ((customerMenu) menu).mDishs.getChildAt(i).findViewById(R.id.checkBox);
+            if(cb.isChecked()){
+                Integer dishId = ((customerMenu) menu).dishToView.get(i);
+                dishIdList.add(dishId);
+                Log.e("DISHES",dishId+"");
+            }
         }
-        ((customerMenu) menu).mDishs.getChildAt(1);
+
+        if(dishIdList.size() == 0){
+            Toast.makeText(this, "Please choose dish.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
+        intent.putIntegerArrayListExtra("selectedDishes",dishIdList);
+        startActivity(intent);
     }
-
-
-
-
-
 }

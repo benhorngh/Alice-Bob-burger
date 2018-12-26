@@ -98,8 +98,10 @@ public class managerMenu {
         Dish changedDish = dishList.get(childIndex);
         changedDish.setName(((EditText)fl.findViewById(R.id.dishName)).getText().toString());
         changedDish.setDescription(((EditText)fl.findViewById(R.id.dishNotes)).getText().toString());
-        changedDish.setPrice(Double.parseDouble(((EditText)fl.findViewById(R.id.dishPrice)).getText().toString()));
-        upload(changedDish);
+        try {
+            changedDish.setPrice(Double.parseDouble(((EditText) fl.findViewById(R.id.dishPrice)).getText().toString()));
+            upload(changedDish);
+        }catch (Exception e){((EditText) fl.findViewById(R.id.dishPrice)).setError("Invalid price");}
     }
 
 

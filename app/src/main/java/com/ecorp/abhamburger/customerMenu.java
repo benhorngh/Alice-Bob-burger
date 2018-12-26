@@ -92,6 +92,7 @@ public class customerMenu extends Fragment {
     }
 
     public void addDish(int img, Dish dish){
+        dishToView.add(dish.id);
         View dishView = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
         ((TextView)dishView.findViewById(R.id.dishName)).setText(dish.getName());
         ((TextView)dishView.findViewById(R.id.dishNotes)).setText(dish.getDescription());
