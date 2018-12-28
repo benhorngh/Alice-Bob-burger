@@ -33,6 +33,7 @@ public class customerMenu extends Fragment {
     }
     LinearLayout mDishs;
     List<Integer> dishToView;
+    List<Dish> dishList;
 
 
 
@@ -53,46 +54,37 @@ public class customerMenu extends Fragment {
     }
 
 
+
+    public int getImg(Dish dish){
+        if(dish.getName().equals("Hamburger"))
+            return R.drawable.hamburger;
+        if(dish.getName().equals("Hot-dog"))
+            return R.drawable.hotdog;
+        if(dish.getName().equals("Schnitzel"))
+            return R.drawable.schnitzel;
+        if(dish.getName().equals("French-Fries"))
+            return R.drawable.fries;
+        if(dish.getName().equals("Roast-beef sandwich"))
+            return R.drawable.roastbeef;
+
+        return 0 ;
+    }
+
+
     public void addDishs(){
 
         Log.e("Count dishlist" ," "+dishList.size());
 
-
-        if(dishList.size()>1) {
-            addDish(R.drawable.hamburger, dishList.get(0));
-            addDish(R.drawable.hotdog, dishList.get(1));
-            addDish(R.drawable.schnitzel, dishList.get(2));
-            addDish(R.drawable.fries, dishList.get(3));
-            addDish(R.drawable.roastbeef, dishList.get(4));
+        for(int i=0; i<dishList.size(); i++){
+            View nv = dishToView(dishList.get(i));
+            mDishs.addView(nv);
+            dishToView.add(dishList.get(i).id);
         }
 
-//        List<Ingredient> id1 = new ArrayList<Ingredient>();
-//        id1.add(new Ingredient("Meet"));
-//        id1.add(new Ingredient("tomato"));
-//        Dish d1 = new Dish(1000,"Hamburger", "200gr with chips",id1 ,50);
-//        Dish d2 = new Dish(1001,"Hot-dog", "With mustard",null ,29);
-//        Dish d3 = new Dish(1003,"Schnitzel", "With golden breadcrumbs",null ,30);
-//        Dish d4 = new Dish(1004,"French-Fries", "With ketchup",null ,17);
-//        Dish d5 = new Dish(1005,"Roast-beef sandwich", "Extra delicious",null ,42);
-//
-//        addDish(R.drawable.hamburger, d1);
-//        addDish(R.drawable.hotdog, d2);
-//        addDish(R.drawable.fries, d3);
-//        addDish(R.drawable.schnitzel, d4);
-//        addDish(R.drawable.roastbeef, d5);
-
-//        addDishToDatabase(d1);
-//        addDishToDatabase(d2);
-//        addDishToDatabase(d3);
-//        addDishToDatabase(d4);
-//        addDishToDatabase(d5);
-
-
-        //        dishToView.add(d1.id);
     }
 
-    public void addDish(int img, Dish dish){
-        dishToView.add(dish.id);
+    public View dishToView(Dish dish){
+        int img = getImg(dish);
         View dishView = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
         ((TextView)dishView.findViewById(R.id.dishName)).setText(dish.getName());
         ((TextView)dishView.findViewById(R.id.dishNotes)).setText(dish.getDescription());
@@ -105,14 +97,14 @@ public class customerMenu extends Fragment {
             }
         });
         im.setImageDrawable(getResources().getDrawable(img));
-        im.getLayoutParams().width = 400;
-        im.getLayoutParams().height = 400;
+        im.getLayoutParams().width = 250;
+        im.getLayoutParams().height = 250;
         im.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         im.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        mDishs.addView(dishView);
+        return dishView;
     }
 
-    List<Dish> dishList;
+
 
 
 

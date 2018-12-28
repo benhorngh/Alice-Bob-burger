@@ -3,16 +3,15 @@ package com.ecorp.abhamburger;
 import java.util.List;
 
 public class Order {
-    int OrderID;
-    String CustomerId;
-    List<Integer> dishesId;
-    String notes;
-    double total;
-    boolean delivery;
+    private String OrderID;
+    private String CustomerId;
+    private List<Integer> dishesId;
+    private String notes;
+    private double total;
+    private boolean delivery;
 
 
-    public Order(int orderID, String customerId, List<Integer> dishesId, String notes, double total, boolean delivery) {
-        OrderID = orderID;
+    public Order( String customerId, List<Integer> dishesId, String notes, double total, boolean delivery) {
         CustomerId = customerId;
         this.dishesId = dishesId;
         this.notes = notes;
@@ -22,11 +21,11 @@ public class Order {
 
     public Order() {}
 
-    public int getOrderID() {
+    public String getOrderID() {
         return OrderID;
     }
 
-    public void setOrderID(int orderID) {
+    public void setOrderID(String orderID) {
         OrderID = orderID;
     }
 
