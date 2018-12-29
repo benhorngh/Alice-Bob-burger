@@ -7,6 +7,7 @@ public class Customer extends Person{
     String phone;
     String address;
     Date birthday;
+    String orderId;
 
 
     public Customer(String fName, String lName, String email,String password,Date birthday, String phone, String address){
@@ -16,6 +17,7 @@ public class Customer extends Person{
         this.birthday = birthday;
 
     }
+    public Customer(){}
 
     public String getPhone() {
         return phone;
@@ -41,6 +43,11 @@ public class Customer extends Person{
         this.birthday = birthday;
     }
 
+    public String getOrderId() {
+        return orderId;
+    }
 
-
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 }

@@ -38,12 +38,15 @@ public class customerActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.navigation_profile:
                                 selectedFragment = customerProfile.newInstance();
+                               findViewById(R.id.fab).setVisibility(View.GONE);
                                 break;
                             case R.id.navigation_menu:
                                 selectedFragment = customerMenu.newInstance();
+                                findViewById(R.id.fab).setVisibility(View.VISIBLE);
                                 break;
                             case R.id.navigation_about:
                                 selectedFragment = customerAbout.newInstance();
+                                findViewById(R.id.fab).setVisibility(View.GONE);
                                 break;
                         }
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -77,8 +80,12 @@ public class customerActivity extends AppCompatActivity {
                 Log.e("DISHES",dishId+"");
             }
         }
+        String orderid = ((Customer)AuthenticatedUserHolder.instance.getAppUser()).getOrderId();
+        if(orderid != null && !orderid.isEmpty()){
+            Toast.makeText(this, "You have an active order!", Toast.LENGTH_LONG).show();
+        }
 
-        if(dishIdList.size() == 0){
+        else if(dishIdList.size() == 0){
             Toast.makeText(this, "Please choose dish.", Toast.LENGTH_LONG).show();
             return;
         }

@@ -254,6 +254,12 @@ public class LoginActivity extends AppCompatActivity {
                                 }
 
                                 if(loginIsOk) {
+                                    if(role.equals("Customer"))
+                                        user = dataSnapshot.getValue(Customer.class);
+                                    if(role.equals("Employee"))
+                                        user = dataSnapshot.getValue(Employee.class);
+                                    if(role.equals("Manager"))
+                                        user = dataSnapshot.getValue(Manager.class);
 
                                     AuthenticatedUserHolder.instance.setAppUser(user);
                                     AuthenticatedUserHolder.instance.setRole(role);

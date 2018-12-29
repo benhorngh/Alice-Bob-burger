@@ -15,4 +15,5 @@ public class Employee extends Person {
         super(fName, lName, email, password);
         this.orderID = new ArrayList<Integer>();
     }
+    public Employee(){}
 }

@@ -8,15 +8,17 @@ public class Order {
     private List<Integer> dishesId;
     private String notes;
     private double total;
+    private String status;
     private boolean delivery;
 
 
-    public Order( String customerId, List<Integer> dishesId, String notes, double total, boolean delivery) {
+    public Order( String customerId, List<Integer> dishesId, String notes, double total, boolean delivery, String status) {
         CustomerId = customerId;
         this.dishesId = dishesId;
         this.notes = notes;
         this.total = total;
         this.delivery = delivery;
+        this.status = status;
     }
 
     public Order() {}
@@ -67,5 +69,13 @@ public class Order {
 
     public void setDelivery(boolean delivery) {
         this.delivery = delivery;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
