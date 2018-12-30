@@ -1,5 +1,6 @@
 package com.ecorp.abhamburger;
 
+import java.util.Date;
 import java.util.List;
 
 public class Order {
@@ -10,15 +11,17 @@ public class Order {
     private double total;
     private String status;
     private boolean delivery;
+    private Date time;
 
 
-    public Order( String customerId, List<Integer> dishesId, String notes, double total, boolean delivery, String status) {
+    public Order(String customerId, List<Integer> dishesId, String notes, double total, boolean delivery, String status, Date time) {
         CustomerId = customerId;
         this.dishesId = dishesId;
         this.notes = notes;
         this.total = total;
         this.delivery = delivery;
         this.status = status;
+        this.time = time;
     }
 
     public Order() {}
@@ -77,5 +80,13 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

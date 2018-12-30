@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -116,6 +117,7 @@ public class OrderActivity extends AppCompatActivity {
                 total,
                 deliver,
                 "Sent"
+                ,new Date() //current time/ date.
                 );
 
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
