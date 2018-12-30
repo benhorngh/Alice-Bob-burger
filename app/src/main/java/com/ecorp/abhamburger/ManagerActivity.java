@@ -26,14 +26,14 @@ public class ManagerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changePage(mainPage);
-
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                changePage(mainPage);
+//
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,6 +45,7 @@ public class ManagerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         bulidPage();
+        navigationView.setCheckedItem(R.id.nav_stats);
         changePage(mainPage);
     }
 
@@ -80,16 +81,16 @@ public class ManagerActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle customer_navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_stats) {
+            changePage(mainPage);
+        } else if (id == R.id.nav_menu) {
             changePage(menuPage);
-        } else if (id == R.id.nav_gallery) {
-
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -134,7 +135,7 @@ public class ManagerActivity extends AppCompatActivity
             menuPage = inflater.inflate(R.layout.manager_menu,
                     (ViewGroup) findViewById(R.id.manager_menu));
 
-            managerMenu.setAllDishs(menuPage, this);
+            managerMenu.getInstance().setAllDishs(menuPage, this);
         }
     }
 }

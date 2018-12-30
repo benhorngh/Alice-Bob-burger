@@ -25,11 +25,19 @@ import java.util.List;
 
 public class managerMenu {
 
-    static List<Dish> dishList = null;
-    static Context context;
-    static LinearLayout layout = null;
+     List<Dish> dishList = null;
+     Context context;
+     LinearLayout layout = null;
 
-    public static void setAllDishs(View view, Context mcontext){
+    private static managerMenu instance = null;
+
+    public static managerMenu getInstance(){
+        if(instance == null)
+            instance = new managerMenu();
+        return instance;
+    }
+
+    public void setAllDishs(View view, Context mcontext){
         layout = (LinearLayout) view.findViewById(R.id.menulist);
         context = mcontext;
         if(dishList == null){
@@ -39,7 +47,7 @@ public class managerMenu {
     }
 
 
-    public static void getAllDishes(){
+    public void getAllDishes(){
 
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         db.child("Dish").addValueEventListener(new ValueEventListener() {
@@ -61,7 +69,7 @@ public class managerMenu {
 
     }
 
-    public static void addDishs() {
+    public void addDishs() {
 
         addDish(R.drawable.hamburger, dishList.get(0));
         addDish(R.drawable.hotdog, dishList.get(1));
@@ -71,7 +79,7 @@ public class managerMenu {
 
     }
 
-    public static void addDish(int img, Dish dish){
+    public void addDish(int img, Dish dish){
         View dishView = LayoutInflater.from(context).inflate(R.layout.manager_dish, null);
         ((EditText)dishView.findViewById(R.id.dishName)).setText(dish.getName());
         ((EditText)dishView.findViewById(R.id.dishNotes)).setText(dish.getDescription());
@@ -85,14 +93,14 @@ public class managerMenu {
         });
 
         im.setImageDrawable(context.getResources().getDrawable(img));
-        im.getLayoutParams().width = 400;
-        im.getLayoutParams().height = 400;
+        im.getLayoutParams().width = 250;
+        im.getLayoutParams().height = 250;
         im.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         im.setScaleType(ImageView.ScaleType.FIT_CENTER);
         layout.addView(dishView);
     }
 
-    private static void updateOnDatabase(View view) {
+    private void updateOnDatabase(View view) {
         FrameLayout fl = (FrameLayout) view.getParent().getParent();
         int childIndex = layout.indexOfChild(fl) -1;
         Dish changedDish = dishList.get(childIndex);
@@ -105,7 +113,7 @@ public class managerMenu {
     }
 
 
-    public static void upload(final Dish dish){
+    public void upload(final Dish dish){
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
 
         db.child("Dish").child(dish.id+"").addListenerForSingleValueEvent(
