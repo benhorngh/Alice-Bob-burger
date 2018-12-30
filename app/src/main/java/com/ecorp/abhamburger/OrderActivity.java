@@ -1,7 +1,13 @@
 package com.ecorp.abhamburger;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +44,7 @@ public class OrderActivity extends AppCompatActivity {
             buildOrder(dishIdList);
         }
 
+        ref = this;
     }
 
     public void buildOrder(ArrayList<Integer> dishIdList){
@@ -52,7 +59,7 @@ public class OrderActivity extends AppCompatActivity {
             }
             if(dish == null) continue;
             total += dish.getPrice();
-            View v = customerMenu.newInstance().dishToView(dish);
+            View v = customerMenu.newInstance().dishToView(dish, this);
             ((CheckBox)v.findViewById(R.id.checkBox)).setVisibility(View.GONE);
             LinearLayout dishes = findViewById(R.id.selectedDishes);
             dishes.addView(v);
@@ -119,37 +126,35 @@ public class OrderActivity extends AppCompatActivity {
         ((Customer)AuthenticatedUserHolder.instance.getAppUser()).setOrderId(key);
         db.child("Customer").child(AuthenticatedUserHolder.instance.getAppUser().getEmail().replace(".", "|")).child("orderId").setValue(key);
 
+        customerActivity.ca.setStatusListener(key);
+
         updateOrder();
     }
 
+    /**
+     * update layout after the current Order
+     */
     void updateOrder(){
-        //TODO: update layout after the current Order
-
         findViewById(R.id.submit).setVisibility(View.GONE);
         ((TextView)findViewById(R.id.status)).setText("status:");
-        ((TextView)findViewById(R.id.updatesStatus)).setText("Sent.");
-        ((TextView)findViewById(R.id.orderId)).setText(order.getOrderID());
+        ((TextView)findViewById(R.id.orderId)).setText("Order id: "+order.getOrderID());
         ((EditText)findViewById(R.id.notes)).setText(order.getNotes());
+        ((TextView)findViewById(R.id.updatesStatus)).setText(order.getStatus());
         ((EditText)findViewById(R.id.notes)).setEnabled(false);
         ((Switch)findViewById(R.id.delivery)).setEnabled(false);
+        if(order.isDelivery())
+            ((Switch)findViewById(R.id.delivery)).setChecked(true);
+        else ((Switch)findViewById(R.id.delivery)).setChecked(false);
 
-
-
-        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-        db.child("Order").child(order.getOrderID()).child("status").addValueEventListener(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-                            String status  = dataSnapshot.getValue(String.class);
-                            ((TextView)findViewById(R.id.updatesStatus)).setText(status);
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                    }
-                }
-        );
     }
+
+    public static OrderActivity ref = null;
+    public static void updateStatus(String status){
+        if(order == null) return;
+        order.setStatus(status);
+        if(ref == null) return;
+        ((TextView)ref.findViewById(R.id.updatesStatus)).setText(order.getStatus());
+    }
+
 
 }

@@ -1,11 +1,17 @@
 package com.ecorp.abhamburger;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,6 +21,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,11 +75,16 @@ public class customerActivity extends AppCompatActivity {
         transaction.commit();
 
         bottomNavigationView.setSelectedItemId(R.id.navigation_menu);
+        String orderid = ((Customer)AuthenticatedUserHolder.instance.getAppUser()).orderId;
+        if(orderid != null &&
+                !orderid.isEmpty() )
+            setStatusListener(orderid);
 
     }
 
+
+
     public void checkout(View view){
-        //TODO move to checkout page - build checkout activity, with the selected dishes and total price.
 
         Fragment menu = customerMenu.newInstance();
         LinearLayout dishes = ((customerMenu) menu).mDishs;
@@ -90,8 +107,83 @@ public class customerActivity extends AppCompatActivity {
             return;
         }
 
-        Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
-        intent.putIntegerArrayListExtra("selectedDishes",dishIdList);
-        startActivity(intent);
+
+        Intent orderActivity = new Intent(getApplicationContext(), OrderActivity.class);
+        orderActivity.putIntegerArrayListExtra("selectedDishes",dishIdList);
+        ca = this;
+        startActivity(orderActivity);
     }
+    static customerActivity ca;
+
+
+
+
+
+
+
+
+    public void setStatusListener(String orderId) {
+        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        db.child("Order").child(orderId).child("status").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            String status  = dataSnapshot.getValue(String.class);
+                            throwNotification(status);
+
+
+                            OrderActivity.updateStatus(status);
+
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                }
+        );
+    }
+
+    public void throwNotification(String status){
+        createNotificationChannel();
+//        Intent orderActivity = new Intent(getApplicationContext(), OrderActivity.class);
+////        Intent intent = new Intent(this, OrderActivity.class);
+//        orderActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, orderActivity, 0);
+
+
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("New update!")
+                .setContentText("your order new status: "+status)
+//                .setContentIntent(pendingIntent)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(notificationId++, mBuilder.build());
+    }
+    static int notificationId=0;
+
+    final String CHANNEL_ID = "ORDERS";
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_order_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+
+
 }

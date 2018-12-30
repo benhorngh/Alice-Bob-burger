@@ -1,6 +1,7 @@
 package com.ecorp.abhamburger;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -76,16 +77,16 @@ public class customerMenu extends Fragment {
         Log.e("Count dishlist" ," "+dishList.size());
 
         for(int i=0; i<dishList.size(); i++){
-            View nv = dishToView(dishList.get(i));
+            View nv = dishToView(dishList.get(i), getActivity().getApplicationContext());
             mDishs.addView(nv);
             dishToView.add(dishList.get(i).id);
         }
 
     }
 
-    public View dishToView(Dish dish){
+    public View dishToView(Dish dish, Context context){
         int img = getImg(dish);
-        View dishView = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.dish, null);
+        View dishView = LayoutInflater.from(context).inflate(R.layout.dish, null);
         ((TextView)dishView.findViewById(R.id.dishName)).setText(dish.getName());
         ((TextView)dishView.findViewById(R.id.dishNotes)).setText(dish.getDescription());
         ((TextView)dishView.findViewById(R.id.dishPrice)).setText("$ "+dish.getPrice());

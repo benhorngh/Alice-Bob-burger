@@ -35,6 +35,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_orders">Active orders</string>
+    <string name="channel_name">A &amp; B Hamburgers.</string>
+    <string name="channel_order_description">Notifications about updates on customer\'s order</string>
 
 
 </resources>
