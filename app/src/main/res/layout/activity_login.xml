@@ -77,21 +77,20 @@
 
             <Button
                 android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold"
                 android:onClick="signin"/>
 
             <Button
                 android:id="@+id/button2"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="moveToReg"
-                android:text="@string/action_Register"
-               />
+                android:text="@string/action_Register" />
 
         </LinearLayout>
     </ScrollView>
