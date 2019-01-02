@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -53,6 +58,15 @@
 
     </LinearLayout>
 
+        <EditText
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/imageButton"
+            android:inputType="text"
+            android:ems="5"
+            android:text="status" />
+
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
@@ -61,13 +75,8 @@
         android:contentDescription="UPLOAD"
         app:srcCompat="@mipmap/ic_action_cloud_upload" />
 
-    <EditText
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/imageButton"
-        android:ems="10"
-        android:inputType="text"
-        android:text="status" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>
