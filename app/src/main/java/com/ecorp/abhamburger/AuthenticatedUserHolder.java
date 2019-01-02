@@ -15,4 +15,5 @@ public class AuthenticatedUserHolder {
     public String getRole(){return Role;}
 
     public void setRole(String Role){this.Role = Role;}
+
 }

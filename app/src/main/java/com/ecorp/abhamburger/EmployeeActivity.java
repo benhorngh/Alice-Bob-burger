@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 public class EmployeeActivity extends AppCompatActivity {
 
 
@@ -69,5 +71,16 @@ public class EmployeeActivity extends AppCompatActivity {
         }
 
         employeeOrders.getInstance().setAllOrders(ordersPage, this);
+        buildProfile();
+
+    }
+
+    protected void buildProfile(){
+        Employee e=(Employee) AuthenticatedUserHolder.instance.getAppUser();
+        ((TextView)profilePage.findViewById(R.id.fname_tx)).setText("firt name: "+e.firstName);
+        ((TextView)profilePage.findViewById(R.id.lname_tx)).setText("last name: "+e.lastName);
+        ((TextView)profilePage.findViewById(R.id.mail_tx)).setText("name: "+e.email);
+        ((TextView)profilePage.findViewById(R.id.type_tx)).setText("name: "+e.type);
+        ((TextView)profilePage.findViewById(R.id.salary_tx)).setText("name: "+e.salary);
     }
 }
