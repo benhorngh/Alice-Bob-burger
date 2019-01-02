@@ -1,6 +1,7 @@
 package com.ecorp.abhamburger;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class employeeOrders {
@@ -34,7 +36,11 @@ public class employeeOrders {
         return instance;
     }
 
+
+
     public void setAllOrders(View view, Context context){
+        getAllDishes();
+
         Log.e("ORDERS11","HEre1");
         layout = view.findViewById(R.id.employeeOrders).findViewById(R.id.orderList);
         this.context = context;
@@ -83,38 +89,59 @@ public class employeeOrders {
             ((TextView)orderView.findViewById(R.id.time)).setText(order.getTime().toString()); //fix
         ((TextView)orderView.findViewById(R.id.notes)).setText(order.getNotes());
         ((EditText)orderView.findViewById(R.id.status)).setText(order.getStatus());
-//        setDishesNames(order);
+
         ((CheckBox)orderView.findViewById(R.id.delivery)).setChecked(order.isDelivery());
         orderView.findViewById(R.id.delivery).setEnabled(false);
 
+
+        setDishName(order.getDishesId(), orderView);
         layout.addView(orderView);
 
     }
 
-    public void setDishesNames(Order order) {
-        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-        for (int i = 0; i < order.getDishesId().size(); i++) {
-            db.child("Dish").child(order.getDishesId().get(i)+"").child("name").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                        setDishName(postSnapshot.getValue().toString());
-                    }
-                }
 
-                @Override
-                public void onCancelled(DatabaseError firebaseError) {
-                    Log.e("The read failed: ", firebaseError.getMessage());
+
+    List<Dish> dishList = null;
+    public void getAllDishes() {
+        dishList = new ArrayList<>();
+        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        db.child("Dish").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Log.e("Count ", "" + snapshot.getChildrenCount());
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    dishList.add(postSnapshot.getValue(Dish.class));
+                    Log.e("add ", "" + 1);
                 }
-            });
-        }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError firebaseError) {
+                Log.e("The read failed: ", firebaseError.getMessage());
+            }
+        });
     }
 
-    synchronized public void setDishName(String name){
-        TextView tv = new TextView(context);
-        tv.setText(name);
+    public void setDishName(List<Integer> dishIds, View parent){
 
-        ((LinearLayout)layout.findViewById(R.id.orderList)).addView(tv);
+        for(Integer id : dishIds) {
+
+            TextView valueTV = new TextView(context);
+            String name = "not found";
+            for(int i=0; i<dishList.size(); i++) {
+                if (dishList.get(i).id == id) {
+                    name = dishList.get(i).getName();
+                    break;
+                }
+            }
+            valueTV.setText(name);
+            valueTV.setTextColor(Color.BLACK);
+            valueTV.setBackgroundColor(Color.TRANSPARENT);
+            valueTV.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
+                    ,LinearLayout.LayoutParams.WRAP_CONTENT));
+            ((LinearLayout) parent.findViewById(R.id.dishesList)).addView(valueTV);
+
+        }
     }
 
 }
