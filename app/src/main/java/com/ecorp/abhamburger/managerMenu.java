@@ -50,7 +50,7 @@ public class managerMenu {
     public void getAllDishes(){
 
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-        db.child("Dish").addValueEventListener(new ValueEventListener() {
+        db.child("Dish").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.e("Count " ,""+snapshot.getChildrenCount());

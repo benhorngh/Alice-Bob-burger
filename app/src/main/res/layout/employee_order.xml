@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
-    <LinearLayout
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/status">
+        android:layout_toStartOf="@+id/status">
+
         <TextView
             android:id="@+id/orderId"
             android:layout_width="wrap_content"
@@ -62,6 +63,7 @@
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/imageButton"
             android:inputType="text"
             android:ems="5"
@@ -69,6 +71,7 @@
 
     <ImageButton
         android:id="@+id/imageButton"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -76,7 +79,6 @@
         app:srcCompat="@mipmap/ic_action_cloud_upload" />
 
 
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
