@@ -64,8 +64,8 @@ public class EmployeeActivity extends AppCompatActivity {
         }
         if(profilePage == null) {
             LayoutInflater inflater = (LayoutInflater)      this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            profilePage = inflater.inflate(R.layout.employee_orders,
-                    (ViewGroup) findViewById(R.id.employeeOrders));
+            profilePage = inflater.inflate(R.layout.employee_profile,
+                    (ViewGroup) findViewById(R.id.employeeProfile));
         }
 
         employeeOrders.getInstance().setAllOrders(ordersPage, this);

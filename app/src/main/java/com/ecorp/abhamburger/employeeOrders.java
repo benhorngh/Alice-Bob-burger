@@ -36,7 +36,7 @@ public class employeeOrders {
 
     public void setAllOrders(View view, Context context){
         Log.e("ORDERS11","HEre1");
-        layout = view.findViewById(R.id.employeeOrders);
+        layout = view.findViewById(R.id.employeeOrders).findViewById(R.id.orderList);
         this.context = context;
         if(orderList == null)
             orderList = new ArrayList<Order>();
@@ -45,6 +45,7 @@ public class employeeOrders {
     }
 
     public void setOrders() {
+
 
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         db.child("Order").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -85,6 +86,8 @@ public class employeeOrders {
 //        setDishesNames(order);
         ((CheckBox)orderView.findViewById(R.id.delivery)).setChecked(order.isDelivery());
         orderView.findViewById(R.id.delivery).setEnabled(false);
+
+        layout.addView(orderView);
 
     }
 
