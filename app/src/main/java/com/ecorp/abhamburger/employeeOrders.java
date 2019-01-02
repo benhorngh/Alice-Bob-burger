@@ -35,6 +35,7 @@ public class employeeOrders {
     }
 
     public void setAllOrders(View view, Context context){
+        Log.e("ORDERS11","HEre1");
         layout = view.findViewById(R.id.employeeOrders);
         this.context = context;
         if(orderList == null)
@@ -46,13 +47,13 @@ public class employeeOrders {
     public void setOrders() {
 
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-        db.child("Order").addValueEventListener(new ValueEventListener() {
+        db.child("Order").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.e("Count ", "" + snapshot.getChildrenCount());
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Log.e("ORDERS11 ", "" + 1);
                     orderList.add(postSnapshot.getValue(Order.class));
-                    Log.e("add ", "" + 1);
                 }
                 addOrders();
             }
@@ -65,6 +66,7 @@ public class employeeOrders {
     }
 
     public void addOrders(){
+        Log.e("ORDERS11", orderList.size()+" :SIZE");
         for(Order order: orderList){
             if(!order.getStatus().equals("Done"))
                 addOrder(order);
@@ -72,6 +74,7 @@ public class employeeOrders {
     }
 
     public void addOrder(Order order){
+        Log.e("ORDERS11","PLUS ONE!");
         View orderView = LayoutInflater.from(context).inflate(R.layout.employee_order, null);
         ((TextView)orderView.findViewById(R.id.fname)).setText("Customer name");
         ((TextView)orderView.findViewById(R.id.orderId)).setText(order.getOrderID());
@@ -79,15 +82,15 @@ public class employeeOrders {
             ((TextView)orderView.findViewById(R.id.time)).setText(order.getTime().toString()); //fix
         ((TextView)orderView.findViewById(R.id.notes)).setText(order.getNotes());
         ((EditText)orderView.findViewById(R.id.status)).setText(order.getStatus());
-        setDishesNames(order);
+//        setDishesNames(order);
         ((CheckBox)orderView.findViewById(R.id.delivery)).setChecked(order.isDelivery());
         orderView.findViewById(R.id.delivery).setEnabled(false);
 
     }
 
     public void setDishesNames(Order order) {
+        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         for (int i = 0; i < order.getDishesId().size(); i++) {
-            final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
             db.child("Dish").child(order.getDishesId().get(i)+"").child("name").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
@@ -103,7 +106,8 @@ public class employeeOrders {
             });
         }
     }
-    public void setDishName(String name){
+
+    synchronized public void setDishName(String name){
         TextView tv = new TextView(context);
         tv.setText(name);
 

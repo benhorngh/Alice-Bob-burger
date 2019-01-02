@@ -12,7 +12,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -215,7 +214,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else if(role.equals("Employee")) {
-            Intent intent = new Intent(getApplicationContext(), EmployeeActicity.class);
+            Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class);
             startActivity(intent);
         }
         else if(role.equals("Manager")) {

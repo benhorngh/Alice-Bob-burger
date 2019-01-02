@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class EmployeeActicity extends AppCompatActivity {
+public class EmployeeActivity extends AppCompatActivity {
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -38,12 +38,9 @@ public class EmployeeActicity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        bulidPage();
+        buildPage();
         changePage(profilePage);
     }
-
-
-
 
 
 
@@ -59,10 +56,10 @@ public class EmployeeActicity extends AppCompatActivity {
     /**
      * build the Summary frame and homepage frame. only on create
      */
-    protected void bulidPage(){
+    protected void buildPage(){
         if(ordersPage == null) {
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            ordersPage = inflater.inflate(R.layout.employee_order,
+            ordersPage = inflater.inflate(R.layout.employee_orders,
                     (ViewGroup) findViewById(R.id.employeeOrders));
         }
         if(profilePage == null) {

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_toStartOf="@+id/status">
+        android:layout_alignEnd="@+id/status">
         <TextView
             android:id="@+id/orderId"
             android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
 
         <CheckBox
             android:id="@+id/delivery"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="delivery" />
 
@@ -57,7 +57,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
         android:contentDescription="UPLOAD"
         app:srcCompat="@mipmap/ic_action_cloud_upload" />
 
@@ -65,10 +64,8 @@
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/imageButton"
         android:ems="10"
-        android:enabled="false"
         android:inputType="text"
         android:text="status" />
 
