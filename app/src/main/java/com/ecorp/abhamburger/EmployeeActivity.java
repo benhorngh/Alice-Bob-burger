@@ -79,8 +79,8 @@ public class EmployeeActivity extends AppCompatActivity {
         Employee e=(Employee) AuthenticatedUserHolder.instance.getAppUser();
         ((TextView)profilePage.findViewById(R.id.fname_tx)).setText("firt name: "+e.firstName);
         ((TextView)profilePage.findViewById(R.id.lname_tx)).setText("last name: "+e.lastName);
-        ((TextView)profilePage.findViewById(R.id.mail_tx)).setText("name: "+e.email);
-        ((TextView)profilePage.findViewById(R.id.type_tx)).setText("name: "+e.type);
-        ((TextView)profilePage.findViewById(R.id.salary_tx)).setText("name: "+e.salary);
+        ((TextView)profilePage.findViewById(R.id.mail_tx)).setText("Email: "+e.email);
+        ((TextView)profilePage.findViewById(R.id.type_tx)).setText("type: "+e.type);
+        ((TextView)profilePage.findViewById(R.id.salary_tx)).setText("salary: "+e.salary);
     }
 }
