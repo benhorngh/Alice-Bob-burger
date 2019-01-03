@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,10 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class employeeOrders {
@@ -51,9 +49,8 @@ public class employeeOrders {
     }
 
     public void setOrders() {
-
-
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+
         db.child("Order").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -93,10 +90,27 @@ public class employeeOrders {
         ((CheckBox)orderView.findViewById(R.id.delivery)).setChecked(order.isDelivery());
         orderView.findViewById(R.id.delivery).setEnabled(false);
 
+        final Order o2 = order;
+        ((ImageButton)orderView.findViewById(R.id.imageButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newStatus = ((EditText)((View) v.getParent()).findViewById(R.id.status)).getText().toString();
+                updateStatus(o2, newStatus, (View)v.getParent().getParent());
+            }
+        });
+
 
         setDishName(order.getDishesId(), orderView);
         layout.addView(orderView);
+    }
 
+    public void updateStatus(Order order, String newStatus, View parent){
+        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        db.child("Order").child(order.getOrderID()).child("status").setValue(newStatus);
+
+        if(newStatus.equals("Done")){
+            layout.removeView(parent);
+        }
     }
 
 
@@ -123,7 +137,6 @@ public class employeeOrders {
     }
 
     public void setDishName(List<Integer> dishIds, View parent){
-
         for(Integer id : dishIds) {
 
             TextView valueTV = new TextView(context);
