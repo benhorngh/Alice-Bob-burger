@@ -91,12 +91,11 @@ public class managerEmployees {
         double salary = 0;
         try {
             salary = Double.parseDouble(slry);
-        }catch (Exception e){Log.e("EERROOR","thrown");return;}
+        }catch (Exception e){return;}
 
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         String key = employeeList.get(layout.indexOfChild(parent)).email.replace(".", "|");
 
-        Log.e("EERROOR","is " + layout.indexOfChild(parent));
 
         db.child("Employee").child(key).child("salary").setValue(salary);
         db.child("Employee").child(key).child("type").setValue(type);

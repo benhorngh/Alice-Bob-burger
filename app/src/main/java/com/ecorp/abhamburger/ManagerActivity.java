@@ -91,7 +91,7 @@ public class ManagerActivity extends AppCompatActivity
             changePage(mainPage);
         } else if (id == R.id.nav_menu) {
             changePage(menuPage);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_employees) {
             changePage(employeePage);
         } else if (id == R.id.nav_manage) {
 
