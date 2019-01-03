@@ -149,6 +149,7 @@ public class OrderActivity extends AppCompatActivity {
             ((Switch)findViewById(R.id.delivery)).setChecked(true);
         else ((Switch)findViewById(R.id.delivery)).setChecked(false);
 
+
     }
 
     public static OrderActivity ref = null;
@@ -157,6 +158,22 @@ public class OrderActivity extends AppCompatActivity {
         order.setStatus(status);
         if(ref == null) return;
         ((TextView)ref.findViewById(R.id.updatesStatus)).setText(order.getStatus());
+
+        if(order.getStatus().equals("Done")){
+            Toast.makeText(ref, "Your order is done! exit...", Toast.LENGTH_LONG).show();
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    try{
+                        Thread.sleep(7000);
+                        ref.finish();
+                    }catch (Exception e){}
+                }
+            });
+            t.start();
+
+        }
     }
 
 

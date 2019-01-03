@@ -150,20 +150,37 @@ public class customerActivity extends AppCompatActivity {
 ////        Intent intent = new Intent(this, OrderActivity.class);
 //        orderActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, orderActivity, 0);
-
-
-
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("New update!")
-                .setContentText("your order new status: "+status)
+        NotificationCompat.Builder mBuilder = null;
+        if(status.equals("Done")){
+            mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("New update!")
+                    .setContentText("your order is ready! : " + status)
 //                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
+
+            final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+            String customerId = AuthenticatedUserHolder.instance.getAppUser().getEmail().replace(".", "|");
+            db.child("Customer").child(customerId).child("orderId").setValue(null);
+            ((Customer)AuthenticatedUserHolder.instance.getAppUser()).orderId = null;
+
+
+        }else {
+            mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("New update!")
+                    .setContentText("your order new status: " + status)
+//                .setContentIntent(pendingIntent)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
+        }
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(notificationId++, mBuilder.build());
     }
+
+
     static int notificationId=0;
 
     final String CHANNEL_ID = "ORDERS";

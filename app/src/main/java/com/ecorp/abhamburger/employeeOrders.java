@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,12 +80,15 @@ public class employeeOrders {
     }
 
     public void addOrder(Order order){
+
+        DateFormat df = new SimpleDateFormat("HH:mm:ss  dd/mm/yyyy");
+
         Log.e("ORDERS11","PLUS ONE!");
         View orderView = LayoutInflater.from(context).inflate(R.layout.employee_order, null);
         ((TextView)orderView.findViewById(R.id.fname)).setText("Customer name");
         ((TextView)orderView.findViewById(R.id.orderId)).setText(order.getOrderID());
         if(order.getTime() != null)
-            ((TextView)orderView.findViewById(R.id.time)).setText(order.getTime().toString()); //fix
+            ((TextView)orderView.findViewById(R.id.time)).setText(df.format(order.getTime())); //fix
         ((TextView)orderView.findViewById(R.id.notes)).setText(order.getNotes());
         ((EditText)orderView.findViewById(R.id.status)).setText(order.getStatus());
 
@@ -110,6 +115,7 @@ public class employeeOrders {
 
         if(newStatus.equals("Done")){
             layout.removeView(parent);
+
         }
     }
 
@@ -147,7 +153,7 @@ public class employeeOrders {
                     break;
                 }
             }
-            valueTV.setText(name);
+            valueTV.setText(" - "+name);
             valueTV.setTextColor(Color.BLACK);
             valueTV.setBackgroundColor(Color.TRANSPARENT);
             valueTV.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
