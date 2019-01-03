@@ -36,6 +36,8 @@ public class employeeOrders {
         return instance;
     }
 
+    private employeeOrders(){}
+
 
 
     public void setAllOrders(View view, Context context){

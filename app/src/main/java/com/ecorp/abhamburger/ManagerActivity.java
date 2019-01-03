@@ -92,7 +92,7 @@ public class ManagerActivity extends AppCompatActivity
         } else if (id == R.id.nav_menu) {
             changePage(menuPage);
         } else if (id == R.id.nav_slideshow) {
-
+            changePage(employeePage);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -112,13 +112,13 @@ public class ManagerActivity extends AppCompatActivity
 
     View mainPage =null;
     View menuPage =null;
+    View employeePage =null;
 
     protected void changePage(View page){
         FrameLayout frame = (FrameLayout) findViewById(R.id.content_manager);
         frame.removeAllViews();
         frame.addView(page);
     }
-
 
 
     /**
@@ -134,8 +134,14 @@ public class ManagerActivity extends AppCompatActivity
             LayoutInflater inflater = (LayoutInflater)      this.getSystemService(LAYOUT_INFLATER_SERVICE);
             menuPage = inflater.inflate(R.layout.manager_menu,
                     (ViewGroup) findViewById(R.id.manager_menu));
-
             managerMenu.getInstance().setAllDishs(menuPage, this);
+        }
+        if(employeePage == null) {
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            employeePage = inflater.inflate(R.layout.manager_employees,
+                    (ViewGroup) findViewById(R.id.managerEmployees));
+
+            managerEmployees.getInstance().setAllEmployees(employeePage, this);
         }
     }
 }
