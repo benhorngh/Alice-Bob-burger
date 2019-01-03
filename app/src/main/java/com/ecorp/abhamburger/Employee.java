@@ -9,11 +9,13 @@ public class Employee extends Person {
 
     double salary;
     String type;
+    int actions;
 
     public Employee(String fName, String lName, String email,String password) {
         super(fName, lName, email, password);
         this.salary = 4000;
         this.type = "seller";
+        this.actions = 0;
     }
     public Employee(){
         this.salary = 4000;
