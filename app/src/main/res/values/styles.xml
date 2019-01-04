@@ -15,6 +15,7 @@
 
     <style name="textStyle">
         <item name="android:textSize">17dp</item>
+
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
