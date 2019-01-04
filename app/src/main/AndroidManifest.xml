@@ -30,7 +30,8 @@
         <activity
             android:name=".EmployeeActivity"
             android:label="@string/title_activity_employee_acticity" />
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".pieChart"></activity>
     </application>
 
 </manifest>

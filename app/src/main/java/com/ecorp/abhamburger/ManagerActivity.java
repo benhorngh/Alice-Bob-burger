@@ -121,8 +121,9 @@ public class ManagerActivity extends AppCompatActivity
     protected void bulidPage(){
         if(mainPage == null) {
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            mainPage = inflater.inflate(R.layout.content_main,
-                    (ViewGroup) findViewById(R.id.manager_main));
+            mainPage = inflater.inflate(R.layout.manager_statistics,
+                    (ViewGroup) findViewById(R.id.managerStatistics));
+            statistics.getInstance().setStatistics(mainPage, this);
         }
         if(menuPage == null) {
             LayoutInflater inflater = (LayoutInflater)      this.getSystemService(LAYOUT_INFLATER_SERVICE);
