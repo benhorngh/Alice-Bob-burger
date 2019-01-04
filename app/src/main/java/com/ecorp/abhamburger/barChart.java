@@ -113,7 +113,7 @@ public class barChart extends AppCompatActivity {
         axisLeft.setGranularityEnabled(true);
         axisLeft.setGranularity(1f);
 
-        BarDataSet dataSet = new BarDataSet(yVals, "Data");
+        BarDataSet dataSet = new BarDataSet(yVals, "Actions");
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.7f);
         chart.setData(barData);

@@ -47,10 +47,8 @@ public class pieChart extends AppCompatActivity {
         db.child("Dish").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                Log.e("Count " ,""+snapshot.getChildrenCount());
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     dishList.add(postSnapshot.getValue(Dish.class));
-                    Log.e("add " ,""+1);
                 }
             }
             @Override
@@ -66,9 +64,7 @@ public class pieChart extends AppCompatActivity {
         db.child("Order").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                Log.e("Count ", "" + snapshot.getChildrenCount());
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    Log.e("ORDERS11 ", "" + 1);
                     orderList.add(postSnapshot.getValue(Order.class));
                 }
                 setPie();
@@ -82,9 +78,6 @@ public class pieChart extends AppCompatActivity {
     }
 
     void setPie(){
-        Log.e("EEFFChart",dishList.size()+" D");
-        Log.e("EEFFChart",orderList.size()+" O");
-
         HashMap<String, Integer> hm = new HashMap<>();
 
         float sum=0;
@@ -97,7 +90,6 @@ public class pieChart extends AppCompatActivity {
                         count++;
                 }
             }
-            Log.e("EEFFChart",count+"");
             hm.put(dishList.get(i).name, count);
             sum+=count;
         }
@@ -117,7 +109,6 @@ public class pieChart extends AppCompatActivity {
         pieChart.invalidate();
 
     }
-
 
 
 

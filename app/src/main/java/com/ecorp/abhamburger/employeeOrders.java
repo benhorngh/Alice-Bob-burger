@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -114,7 +115,10 @@ public class employeeOrders {
         db.child("Order").child(order.getOrderID()).child("status").setValue(newStatus);
         if(newStatus.equals("Done")){
             layout.removeView(parent);
+            orderList.remove(order);
         }
+        Toast.makeText(context, "Changed.", Toast.LENGTH_LONG).show();
+
 
         String key =AuthenticatedUserHolder.instance.getAppUser().getEmail().replace(".", "|");
         int actions = ((Employee)AuthenticatedUserHolder.instance.getAppUser()).actions;
