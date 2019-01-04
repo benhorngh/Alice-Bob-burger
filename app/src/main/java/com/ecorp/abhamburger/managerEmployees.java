@@ -61,8 +61,6 @@ public class managerEmployees {
                 Log.e("The read failed: " ,firebaseError.getMessage());
             }
         });
-
-
     }
     void addEmployees(){
         for (Employee e : employeeList)

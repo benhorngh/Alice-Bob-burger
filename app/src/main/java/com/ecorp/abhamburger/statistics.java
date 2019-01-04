@@ -27,6 +27,14 @@ public class statistics {
                 context.startActivity(intent);
             }
         });
+
+        page.findViewById(R.id.barChart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, barChart.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
 

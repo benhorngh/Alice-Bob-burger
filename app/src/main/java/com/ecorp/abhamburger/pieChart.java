@@ -81,11 +81,6 @@ public class pieChart extends AppCompatActivity {
         });
     }
 
-
-    float[] data = {50f,32f,9f,6f,3f};
-    String[] dish = {"dd","gg","ll","aa","rr"};
-
-
     void setPie(){
         Log.e("EEFFChart",dishList.size()+" D");
         Log.e("EEFFChart",orderList.size()+" O");
@@ -109,7 +104,7 @@ public class pieChart extends AppCompatActivity {
         List<PieEntry> pieEntries = new ArrayList<>();
 
         for(int i =0; i< dishList.size(); i++){
-            pieEntries.add(new PieEntry((float)((float)hm.get(dishList.get(i).name)/sum),dishList.get(i).name));
+            pieEntries.add(new PieEntry((float)((float)hm.get(dishList.get(i).name)/* /sum */),dishList.get(i).name));
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "Popular dish");
