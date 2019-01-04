@@ -91,14 +91,8 @@ public class ManagerActivity extends AppCompatActivity
             changePage(mainPage);
         } else if (id == R.id.nav_menu) {
             changePage(menuPage);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_employees) {
             changePage(employeePage);
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -127,8 +121,9 @@ public class ManagerActivity extends AppCompatActivity
     protected void bulidPage(){
         if(mainPage == null) {
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-            mainPage = inflater.inflate(R.layout.content_main,
-                    (ViewGroup) findViewById(R.id.manager_main));
+            mainPage = inflater.inflate(R.layout.manager_statistics,
+                    (ViewGroup) findViewById(R.id.managerStatistics));
+            statistics.getInstance().setStatistics(mainPage, this);
         }
         if(menuPage == null) {
             LayoutInflater inflater = (LayoutInflater)      this.getSystemService(LAYOUT_INFLATER_SERVICE);
