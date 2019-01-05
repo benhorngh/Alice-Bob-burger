@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -42,39 +43,44 @@ public class pieChart extends AppCompatActivity {
     }
 
     public void getAllDishes(){
-        dishList = new ArrayList<>();
-        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
-        db.child("Dish").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    dishList.add(postSnapshot.getValue(Dish.class));
+        dishList = managerMenu.getInstance().dishList;
+        if(dishList == null) {
+            dishList = new ArrayList<>();
+            final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+            db.child("Dish").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        dishList.add(postSnapshot.getValue(Dish.class));
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(DatabaseError firebaseError) {
-                Log.e("The read failed: " ,firebaseError.getMessage());
-            }
-        });
+
+                @Override
+                public void onCancelled(DatabaseError firebaseError) {
+                    Log.e("The read failed: ", firebaseError.getMessage());
+                }
+            });
+        }
     }
     public void getAllOrders() {
-        orderList = new ArrayList<>();
-        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
 
-        db.child("Order").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    orderList.add(postSnapshot.getValue(Order.class));
+            orderList = new ArrayList<>();
+            final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+
+            db.child("Order").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        orderList.add(postSnapshot.getValue(Order.class));
+                    }
+                    setPie();
                 }
-                setPie();
-            }
 
-            @Override
-            public void onCancelled(DatabaseError firebaseError) {
-                Log.e("The read failed: ", firebaseError.getMessage());
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError firebaseError) {
+                    Log.e("The read failed: ", firebaseError.getMessage());
+                }
+            });
     }
 
     void setPie(){
@@ -105,6 +111,10 @@ public class pieChart extends AppCompatActivity {
 
         PieChart pieChart = findViewById(R.id.pieChart);
 
+        Description description = new Description();
+        description.setText("Popularity of a dish");
+        description.setTextSize(20);
+        pieChart.setDescription(description);
         pieChart.setData(pieData);
         pieChart.invalidate();
 

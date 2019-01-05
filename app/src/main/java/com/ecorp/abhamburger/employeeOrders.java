@@ -49,10 +49,10 @@ public class employeeOrders {
         if(orderList == null)
             orderList = new ArrayList<Order>();
 
-        setOrders();
+        getAllOrders();
     }
 
-    public void setOrders() {
+    public void getAllOrders() {
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
 
         db.child("Order").addListenerForSingleValueEvent(new ValueEventListener() {

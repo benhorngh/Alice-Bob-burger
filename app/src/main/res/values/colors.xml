@@ -6,4 +6,9 @@
     <color name="dishBackground">#73450c3f</color>
     <color name="bubbleStroke">#8d9799</color>
     <color name="bubbleInside">#B1BCBE</color>
+
+    <color name="background">#feffc6</color>
+    <color name="navigation">#fdff93</color>
+
+
 </resources>

@@ -6,18 +6,50 @@
     android:orientation="vertical"
     android:id="@+id/managerStatistics">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp">
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_toStartOf="@+id/total"
+            android:text="Total earning:" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_centerHorizontal="true"
+            android:text="$ 0" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <Button
         android:id="@+id/dishChart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dish chart" />
+        android:text="Dish chart"
+        android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <Button
         android:id="@+id/barChart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Employee chart" />
+        android:text="Employee chart"
+        android:layout_centerHorizontal="true"/>
 
-
+    </RelativeLayout>
 </LinearLayout>

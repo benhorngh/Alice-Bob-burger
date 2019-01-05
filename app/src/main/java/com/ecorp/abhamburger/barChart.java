@@ -26,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +72,16 @@ public class barChart extends AppCompatActivity {
     }
 
     void buildData(){
+
+//        employeeList.sort(new Comparator<Employee>() {
+//            @Override
+//            public int compare(Employee o1, Employee o2) {
+//                return o1.actions - o2.actions;
+//            }
+//        });
+        Collections.sort(employeeList);
+
+
         for(Employee e : employeeList)
             data.put(e.firstName+" "+ e.lastName, e.actions);
         plotData();
@@ -116,6 +128,11 @@ public class barChart extends AppCompatActivity {
         BarDataSet dataSet = new BarDataSet(yVals, "Actions");
         BarData barData = new BarData(dataSet);
         barData.setBarWidth(0.7f);
+
+        Description description = new Description();
+        description.setText("Employees efficiency");
+        description.setTextSize(20);
+        chart.setDescription(description);
         chart.setData(barData);
         chart.invalidate();
     }
