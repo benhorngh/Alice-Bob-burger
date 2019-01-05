@@ -2,6 +2,7 @@ package com.ecorp.abhamburger;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -167,7 +168,9 @@ public class EmployeeActivity extends AppCompatActivity {
         NotificationCompat.Builder mBuilder = null;
 
             mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.ic_launcher_icon)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                            R.mipmap.ic_launcher_icon))
                     .setContentTitle("You got a raise!")
                     .setContentText("your new salary: " + newSalary)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)

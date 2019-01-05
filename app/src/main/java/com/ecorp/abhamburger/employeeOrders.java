@@ -103,6 +103,7 @@ public class employeeOrders {
             @Override
             public void onClick(View v) {
                 String newStatus = ((EditText)((View) v.getParent()).findViewById(R.id.status)).getText().toString();
+                if(newStatus == null || newStatus.isEmpty()) return;
                 updateStatus(o2, newStatus, (View)v.getParent().getParent());
             }
         });

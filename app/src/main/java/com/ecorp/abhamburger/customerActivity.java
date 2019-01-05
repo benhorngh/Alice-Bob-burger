@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -153,7 +154,7 @@ public class customerActivity extends AppCompatActivity {
         NotificationCompat.Builder mBuilder = null;
         if(status.equals("Done")){
             mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.ic_launcher_icon)
                     .setContentTitle("New update!")
                     .setContentText("your order is ready! : " + status)
 //                .setContentIntent(pendingIntent)
@@ -168,7 +169,9 @@ public class customerActivity extends AppCompatActivity {
 
         }else {
             mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.ic_launcher_icon)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                            R.mipmap.ic_launcher_icon))
                     .setContentTitle("New update!")
                     .setContentText("your order new status: " + status)
 //                .setContentIntent(pendingIntent)

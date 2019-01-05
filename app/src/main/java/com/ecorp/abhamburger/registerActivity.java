@@ -108,6 +108,9 @@ public class registerActivity extends AppCompatActivity {
         String fName = ((EditText)findViewById(R.id.firstName)).getText().toString();
         String lName = ((EditText)findViewById(R.id.lastName)).getText().toString();
         String address = ((EditText)findViewById(R.id.address)).getText().toString();
+        String phone = ((EditText)findViewById(R.id.phoneNum)).getText().toString();
+        String Bday = ((EditText)findViewById(R.id.Bday)).getText().toString();
+        String role = ((Spinner)findViewById(R.id.role)).getSelectedItem().toString();
 
         if(!checkValid(((EditText)findViewById(R.id.password)))) return;
         if(!checkValid(((EditText)findViewById(R.id.password2)))) return;
@@ -128,9 +131,34 @@ public class registerActivity extends AppCompatActivity {
         }
 
 
-        String phone = ((EditText)findViewById(R.id.phoneNum)).getText().toString();
-        String Bday = ((EditText)findViewById(R.id.Bday)).getText().toString();
-        String role = ((Spinner)findViewById(R.id.role)).getSelectedItem().toString();
+
+        if(role.equals("Customer")) {
+            try {
+                Integer.parseInt(phone);
+            } catch (Exception e) {
+                ((EditText) findViewById(R.id.phoneNum)).setError("invalid");
+                findViewById(R.id.phoneNum).requestFocus();
+                return;
+            }
+
+            if (phone.length() != 10) {
+                ((EditText) findViewById(R.id.phoneNum)).setError("invalid");
+                findViewById(R.id.phoneNum).requestFocus();
+                return;
+            }
+
+            if (address == null || address.isEmpty()) {
+                ((EditText) findViewById(R.id.address)).setError("required");
+                findViewById(R.id.address).requestFocus();
+                return;
+            }
+        }
+
+
+
+
+
+
 
         String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -197,7 +225,7 @@ public class registerActivity extends AppCompatActivity {
         });
     }
     private void updateLabel() {
-        String myFormat = "dd/MM/yy"; //In which you need put here
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         bday.setText(sdf.format(myCalendar.getTime()));
