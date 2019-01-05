@@ -52,12 +52,25 @@
             android:layout_height="wrap_content"
             android:text="without bla bla blakjnxfxklvmkdfmvlmdflmvldfvdfvdf"/>
 
-        <CheckBox
-            android:id="@+id/delivery"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="delivery" />
+            android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="delivery" />
 
+            <TextView
+                android:id="@+id/address"
+                android:layout_marginStart="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ariel 2 qedumim"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

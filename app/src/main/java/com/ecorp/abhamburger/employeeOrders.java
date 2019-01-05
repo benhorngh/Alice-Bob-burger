@@ -41,6 +41,7 @@ public class employeeOrders {
 
     public void setAllOrders(View view, Context context){
         getAllDishes();
+        getAllCustomers();
 
         Log.e("ORDERS11","HEre1");
         layout = view.findViewById(R.id.employeeOrders).findViewById(R.id.orderList);
@@ -84,6 +85,7 @@ public class employeeOrders {
 
         DateFormat df = new SimpleDateFormat("HH:mm:ss  dd/mm/yyyy");
 
+
         Log.e("ORDERS11","PLUS ONE!");
         View orderView = LayoutInflater.from(context).inflate(R.layout.employee_order, null);
         ((TextView)orderView.findViewById(R.id.fname)).setText("Customer name");
@@ -105,7 +107,7 @@ public class employeeOrders {
             }
         });
 
-
+        setCustomerName(order.getCustomerId(), orderView);
         setDishName(order.getDishesId(), orderView);
         layout.addView(orderView);
     }
@@ -149,6 +151,16 @@ public class employeeOrders {
             }
         });
     }
+    public void setCustomerName(String customerId ,View parent) {
+        for (Customer c : customerList)
+            if (c.getEmail().equals(customerId)) {
+                if(c.address != null)
+                    ((TextView) parent.findViewById(R.id.fname)).setText(c.firstName + " " + c.lastName);
+                ((TextView) parent.findViewById(R.id.address)).setText(c.address);
+                return;
+            }
+    }
+
 
     public void setDishName(List<Integer> dishIds, View parent){
         for(Integer id : dishIds) {
@@ -169,6 +181,28 @@ public class employeeOrders {
             ((LinearLayout) parent.findViewById(R.id.dishesList)).addView(valueTV);
 
         }
+    }
+
+
+    List<Customer> customerList = null;
+    public void getAllCustomers() {
+        customerList = new ArrayList<>();
+        final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        db.child("Customer").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Log.e("Count ", "" + snapshot.getChildrenCount());
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    customerList.add(postSnapshot.getValue(Customer.class));
+                    Log.e("add ", "" + 1);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError firebaseError) {
+                Log.e("The read failed: ", firebaseError.getMessage());
+            }
+        });
     }
 
 }
