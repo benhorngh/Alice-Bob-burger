@@ -23,7 +23,19 @@ public class customerProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.cusomer_profile, container, false);
+        View v = inflater.inflate(R.layout.cusomer_profile, container, false);
+        buildPage(v);
+        return v;
+    }
+
+    void buildPage(View layout){
+        /*in order to call findViewById you need to use layout.:
+        textview = findViewById() - not working
+        textview = layout.findViewById() - working
+
+        Love you XOXO
+         */
+
     }
 }
 
