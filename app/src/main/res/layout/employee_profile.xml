@@ -44,37 +44,112 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="205dp"
             android:text="TextView"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/fname1_tx"/>
 
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lname1_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="0dp"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     <TextView
         android:id="@+id/lname_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/lname1_tx"/>
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/mail1_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="0dp"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     <TextView
         android:id="@+id/mail_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/mail1_tx"/>
+    </RelativeLayout>
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/type1_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="0dp"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     <TextView
         android:id="@+id/type_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/type1_tx"/>
+    </RelativeLayout>
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/salary1_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="0dp"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     <TextView
         android:id="@+id/salary_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_toRightOf="@id/salary1_tx"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

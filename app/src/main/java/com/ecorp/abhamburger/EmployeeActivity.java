@@ -88,14 +88,21 @@ public class EmployeeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * build the profile page
+     */
     protected void buildProfile(){
         Employee e=(Employee) AuthenticatedUserHolder.instance.getAppUser();
         ((TextView)profilePage.findViewById(R.id.fname_tx)).setText(e.firstName);
         ((TextView)profilePage.findViewById(R.id.fname1_tx)).setText("first name: ");
-        ((TextView)profilePage.findViewById(R.id.lname_tx)).setText("last name: "+e.lastName);
-        ((TextView)profilePage.findViewById(R.id.mail_tx)).setText("Email: "+e.email);
-        ((TextView)profilePage.findViewById(R.id.type_tx)).setText("type: "+e.type);
-        ((TextView)profilePage.findViewById(R.id.salary_tx)).setText("salary: "+e.salary);
+        ((TextView)profilePage.findViewById(R.id.lname1_tx)).setText("last name: ");
+        ((TextView)profilePage.findViewById(R.id.lname_tx)).setText(e.lastName);
+        ((TextView)profilePage.findViewById(R.id.mail_tx)).setText(e.email);
+        ((TextView)profilePage.findViewById(R.id.mail1_tx)).setText("Email: ");
+        ((TextView)profilePage.findViewById(R.id.type1_tx)).setText("type: ");
+        ((TextView)profilePage.findViewById(R.id.type_tx)).setText(e.type);
+        ((TextView)profilePage.findViewById(R.id.salary_tx)).setText(e.salary+"$");
+        ((TextView)profilePage.findViewById(R.id.salary1_tx)).setText("salary: ");
     }
 
     boolean openingS = true;
