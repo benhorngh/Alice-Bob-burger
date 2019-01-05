@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     //up-cus_acti
-    <color name="colorPrimary">#EC9B4B</color>
+    <color name="colorPrimary">#DB8043</color>
     //hour
     <color name="colorPrimaryDark">#9A5817</color>
     //buttons
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#d60d51</color>
 
     <color name="dishBackground">#73450c3f</color>
     <color name="bubbleStroke">#8d9799</color>
     <color name="bubbleInside">#B1BCBE</color>
-    <color name="background">#DB8043</color>
+    <color name="background">#EC9B4B</color>
     <color name="navigation">#9A6836</color>
 
 

@@ -5,6 +5,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class customerProfile extends Fragment {
     public static customerProfile cp = null;
@@ -28,6 +32,15 @@ public class customerProfile extends Fragment {
     }
 
     void buildPage(View layout){
+        Customer c = (Customer) AuthenticatedUserHolder.instance.getAppUser();
+        ((TextView)layout.findViewById(R.id.name_tx)).setText(c.firstName + " " + c.lastName);
+        ((TextView)layout.findViewById(R.id.phone_tx)).setText(c.phone);
+        ((TextView)layout.findViewById(R.id.email_tx)).setText(c.email);
+        ((TextView)layout.findViewById(R.id.address_tx)).setText(c.address);
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        ((TextView)layout.findViewById(R.id.bday_tx)).setText(df.format(c.birthday));
+
         /*in order to call findViewById you need to use layout.:
         textview = findViewById() - not working
         textview = layout.findViewById() - working

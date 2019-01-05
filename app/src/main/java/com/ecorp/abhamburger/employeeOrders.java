@@ -83,7 +83,7 @@ public class employeeOrders {
 
     public void addOrder(Order order){
 
-        DateFormat df = new SimpleDateFormat("HH:mm:ss  dd/mm/yyyy");
+        DateFormat df = new SimpleDateFormat("HH:mm:ss  dd/MM/yyyy");
 
 
         Log.e("ORDERS11","PLUS ONE!");

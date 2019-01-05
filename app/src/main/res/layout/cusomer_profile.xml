@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
-
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="com.ecorp.abhamburger.customerProfile"
-android:orientation="vertical"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/customer_profile">
-
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cusomer_profile">
 
 
     <TextView
@@ -36,23 +30,54 @@ android:id="@+id/customer_profile">
             android:layout_alignParentTop="true"
             android:layout_marginStart="2dp"
             android:layout_marginTop="0dp"
-            android:text="TextView"
+            android:text="Name"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/fname_tx"
+            android:id="@+id/name_tx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="205dp"
             android:text="TextView"
             android:textSize="20sp"
-            android:layout_toRightOf="@id/fname1_tx"/>
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/fname1_tx"/>
 
     </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/type1_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="0dp"
+            android:text="Email"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/email_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/type1_tx"/>
+    </RelativeLayout>
+
+
+
+
 
 
     <RelativeLayout
@@ -67,19 +92,24 @@ android:id="@+id/customer_profile">
             android:layout_alignParentTop="true"
             android:layout_marginStart="2dp"
             android:layout_marginTop="0dp"
-            android:text="TextView"
+            android:text="Phone number:"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/lname_tx"
+            android:id="@+id/phone_tx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:layout_marginStart="8dp"
             android:textSize="20sp"
-            android:layout_toRightOf="@id/lname1_tx"/>
+            android:layout_toEndOf="@id/lname1_tx"/>
 
     </RelativeLayout>
+
+
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -89,23 +119,56 @@ android:id="@+id/customer_profile">
             android:id="@+id/mail1_tx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="2dp"
             android:layout_marginTop="0dp"
-            android:text="TextView"
+            android:text="Address"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/mail_tx"
+            android:id="@+id/address_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            android:layout_toEndOf="@id/mail1_tx"/>
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/salary1_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="0dp"
+            android:text="Birthday"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/bday_tx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textSize="20sp"
-            android:layout_toRightOf="@id/mail1_tx"/>
-    </RelativeLayout>
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/salary1_tx"/>
 
+    </RelativeLayout>
 
 </LinearLayout>
