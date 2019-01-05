@@ -9,7 +9,6 @@
     android:id="@+id/employeeProfile">
 
 
-
         <TextView
             android:id="@+id/headline_tx"
             android:layout_width="match_parent"
@@ -40,12 +39,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="205dp"
             android:text="TextView"
             android:textSize="20sp"
-            android:layout_toRightOf="@id/fname1_tx"/>
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/fname1_tx"/>
 
     </RelativeLayout>
 
@@ -71,8 +69,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:layout_marginStart="8dp"
         android:textSize="20sp"
-        android:layout_toRightOf="@id/lname1_tx"/>
+        android:layout_toEndOf="@id/lname1_tx"/>
 
     </RelativeLayout>
 
@@ -97,8 +96,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:layout_marginStart="8dp"
         android:textSize="20sp"
-        android:layout_toRightOf="@id/mail1_tx"/>
+        android:layout_toEndOf="@id/mail1_tx"/>
     </RelativeLayout>
 
 
@@ -123,7 +123,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="20sp"
-        android:layout_toRightOf="@id/type1_tx"/>
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/type1_tx"/>
     </RelativeLayout>
 
 
@@ -148,7 +149,8 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="20sp"
-        android:layout_toRightOf="@id/salary1_tx"/>
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/salary1_tx"/>
 
     </RelativeLayout>
 

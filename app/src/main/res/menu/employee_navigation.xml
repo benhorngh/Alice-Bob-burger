@@ -3,13 +3,13 @@
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@mipmap/ic_action_face"
         android:title="@string/title_profile" />
 
 
     <item
         android:id="@+id/navigation_orders"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@mipmap/ic_action_notifications"
         android:title="@string/title_orders" />
 
 </menu>
