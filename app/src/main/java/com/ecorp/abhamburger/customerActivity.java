@@ -156,7 +156,9 @@ public class customerActivity extends AppCompatActivity {
             mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                     .setSmallIcon(R.mipmap.ic_launcher_icon)
                     .setContentTitle("New update!")
-                    .setContentText("your order is ready! : " + status)
+                    .setContentText("your order is ready!")
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                            R.mipmap.ic_launcher_icon))
 //                .setContentIntent(pendingIntent)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setAutoCancel(true);

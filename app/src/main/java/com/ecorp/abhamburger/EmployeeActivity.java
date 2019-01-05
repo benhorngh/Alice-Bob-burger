@@ -172,7 +172,7 @@ public class EmployeeActivity extends AppCompatActivity {
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(),
                             R.mipmap.ic_launcher_icon))
                     .setContentTitle("You got a raise!")
-                    .setContentText("your new salary: " + newSalary)
+                    .setContentText("your new salary: " + newSalary+"$")
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setAutoCancel(true);
 

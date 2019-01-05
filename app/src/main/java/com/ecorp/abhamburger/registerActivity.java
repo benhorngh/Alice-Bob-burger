@@ -42,14 +42,14 @@ public class registerActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 if(position == 1 || position == 2){ //Employee or manager
-                    ((EditText)findViewById(R.id.phoneNum)).setEnabled(false);
-                    ((EditText)findViewById(R.id.address)).setEnabled(false);
-                    ((EditText)findViewById(R.id.Bday)).setEnabled(false);
+                    ((EditText)findViewById(R.id.phoneNum)).setVisibility(View.GONE);
+                    ((EditText)findViewById(R.id.address)).setVisibility(View.GONE);
+                    ((EditText)findViewById(R.id.Bday)).setVisibility(View.GONE);
                 }
                 else {
-                    ((EditText)findViewById(R.id.phoneNum)).setEnabled(true);
-                    ((EditText)findViewById(R.id.address)).setEnabled(true);
-                    ((EditText)findViewById(R.id.Bday)).setEnabled(true);
+                    ((EditText)findViewById(R.id.phoneNum)).setVisibility(View.VISIBLE);
+                    ((EditText)findViewById(R.id.address)).setVisibility(View.VISIBLE);
+                    ((EditText)findViewById(R.id.Bday)).setVisibility(View.VISIBLE);
                 }
             }
             @Override
