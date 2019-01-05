@@ -104,10 +104,16 @@ public class managerMenu {
         FrameLayout fl = (FrameLayout) view.getParent().getParent();
         int childIndex = layout.indexOfChild(fl) -1;
         Dish changedDish = dishList.get(childIndex);
-        changedDish.setName(((EditText)fl.findViewById(R.id.dishName)).getText().toString());
-        changedDish.setDescription(((EditText)fl.findViewById(R.id.dishNotes)).getText().toString());
+        String newname = ((EditText)fl.findViewById(R.id.dishName)).getText().toString();
+        String desc = ((EditText)fl.findViewById(R.id.dishNotes)).getText().toString();
+        if(newname == null || newname.isEmpty()) return;
+        if(desc == null || desc.isEmpty()) return;
+        changedDish.setName(newname);
+        changedDish.setDescription(desc);
+        String newprice = ((EditText) fl.findViewById(R.id.dishPrice)).getText().toString();
+        if(newprice == null || newprice.isEmpty()) return;
         try {
-            changedDish.setPrice(Double.parseDouble(((EditText) fl.findViewById(R.id.dishPrice)).getText().toString()));
+            changedDish.setPrice(Double.parseDouble(newprice));
             upload(changedDish);
         }catch (Exception e){((EditText) fl.findViewById(R.id.dishPrice)).setError("Invalid price");}
     }

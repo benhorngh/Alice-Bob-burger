@@ -91,6 +91,8 @@ public class managerEmployees {
             salary = Double.parseDouble(slry);
         }catch (Exception e){return;}
 
+        if(type == null || slry == null || type.isEmpty() || slry.isEmpty()) return;
+
         final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         String key = employeeList.get(layout.indexOfChild(parent)).email.replace(".", "|");
 
