@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="dishBackground">#73450c3f</color>
+    <color name="bubbleStroke">#8d9799</color>
+    <color name="bubbleInside">#B1BCBE</color>
 </resources>
